@@ -1,0 +1,134 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-bg: #f4f4f4;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+    grid-template-areas:
+        "sidebar main"
+        "sidebar footer";
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #1e364e;
+    padding: 1rem;
+    color: #fff;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 1rem 0;
+}
+
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li.current a {
+    color: var(--accent-color);
+}
+
+.main {
+    grid-area: main;
+    padding: 2rem;
+    background: #fff;/* Offset the main content by the width of the sidebar */
+}
+
+.main h2 {
+    margin-bottom: 1rem;
+}
+
+.widgets {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.widget {
+    flex: 1;
+    min-width: 200px;
+    background: var(--light-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.widget h3 {
+    margin-bottom: 0.5rem;
+}
+
+.widget:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    grid-area: footer;
+    background: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 1rem; /* Offset the footer by the width of the sidebar */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "main"
+            "footer";
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    .main, .footer {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .widgets {
+        flex-direction: column;
+    }
+}
